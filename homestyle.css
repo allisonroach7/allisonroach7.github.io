@@ -1,0 +1,27 @@
+body{
+    background-color: darkgrey;
+    text-align: center;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+a{
+    color: cornsilk;
+    text-decoration: none;
+}
+
+a:hover{
+    color: red;
+    text-decoration: line;
+}
+
+main{
+    text-align: left;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+h2{
+    text-align: center;
+}
