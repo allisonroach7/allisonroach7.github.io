@@ -13,9 +13,6 @@ body {
   h2 {
     color: #ffd166;
   }
-  ul {
-    list-style-type: square;
-  }
   footer {
     text-align: center;
     padding: 10px;
