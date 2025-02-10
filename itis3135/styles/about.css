@@ -18,3 +18,8 @@ body {
     padding: 10px;
     background-color: #118ab2;
   }
+  header img {
+    width: 100px; 
+    height: auto;
+    margin-right: 20px; 
+  }
