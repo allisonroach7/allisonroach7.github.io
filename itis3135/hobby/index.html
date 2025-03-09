@@ -29,6 +29,26 @@
             font-size: 2.5em;
         }
 
+        /* Navigation Styles */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
         /* Main Content Styles */
         main {
             padding: 20px;
@@ -36,6 +56,11 @@
 
         section {
             margin-bottom: 30px;
+            display: none; /* Hide all sections by default */
+        }
+
+        section.active {
+            display: block; /* Show the active section */
         }
 
         h3 {
@@ -83,9 +108,17 @@
 <body>
     <header>
         <h1>Pride of Niner Nation Marching Band</h1>
+        <nav>
+            <ul>
+                <li><a href="#about-us" class="nav-link">About Us</a></li>
+                <li><a href="#favorite-moments" class="nav-link">Favorite Moments</a></li>
+                <li><a href="#favorite-performances" class="nav-link">Favorite Performances</a></li>
+                <li><a href="#my-section" class="nav-link">My Section</a></li>
+            </ul>
+        </nav>
     </header>
     <main>
-        <section id="about-us">
+        <section id="about-us" class="active">
             <h3>About Us:</h3>
             <p>The Pride of Niner Nation Marching Band was founded in the year 2015 with the help of donations by Gene and Vicki Johnson, who thought that Charlotte's new football team would be incomplete without a marching band. The Pride of Niner Nation Marching Band (PNNMB) is the largest spirit organization at UNC Charlotte, and performs at football games, basketball games, campus events, other sporting events, and local events.</p>
         </section>
@@ -112,5 +145,36 @@
     <footer>
         <p>2025 PNNMB Appreciation Page</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get all navigation links
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            // Get all content sections
+            const contentSections = document.querySelectorAll('main section');
+
+            // Add click event listener to each link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault(); // Prevent default anchor behavior
+
+                    // Get the target section ID from the link's href
+                    const targetId = this.getAttribute('href').substring(1);
+
+                    // Hide all sections
+                    contentSections.forEach(section => {
+                        section.classList.remove('active');
+                    });
+
+                    // Show the target section
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        targetSection.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
