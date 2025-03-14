@@ -6,109 +6,158 @@
     <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
     <title>PNNMB Appreciation Page</title>
     <style>
-        /* General Styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: rgb(0, 133, 66); /* UNC Charlotte Green */
-            color: white; /* White text */
-            line-height: 1.6;
-        }
+       /* General Styles */
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, rgb(0, 133, 66) 0%, rgba(0, 100, 50, 0.9) 100%);
+    color: white;
+    line-height: 1.8;
+}
 
-        /* Header Styles */
-        header {
-            background-color: rgb(0, 133, 66); /* UNC Charlotte Green */
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+/* Header Styles */
+header {
+    background-color: rgb(0, 133, 66);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-            color: #B9975B; /* Gold for the header title */
-        }
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    color: #B9975B;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+}
 
-        /* Navigation Styles */
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
+/* Navigation Styles */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
 
-        nav a {
-            color: #B9975B; 
-            text-decoration: none;
-            font-size: 1.2em;
-        }
+nav a {
+    color: #B9975B;
+    text-decoration: none;
+    font-size: 1.2em;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-        nav a:hover {
-            text-decoration: underline;
-            color: white; /* White on hover */
-        }
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+}
 
-        /* Main Content Styles */
-        main {
-            padding: 20px;
-            background-color: rgb(0, 133, 66); /* UNC Charlotte Green */
-        }
+nav a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
 
-        section {
-            margin-bottom: 30px;
-            display: none; /* Hide all sections by default */
-        }
+/* Main Content Styles */
+main {
+    padding: 20px;
+}
 
-        section.active {
-            display: block; /* Show the active section */
-        }
+section {
+    margin-bottom: 40px;
+    padding: 40px 20px;
+    display: none;
+    transition: opacity 0.5s ease;
+    opacity: 0;
+}
 
-        h3 {
-            color: #B9975B; /* Gold for section headings */
-            font-size: 1.8em;
-            margin-bottom: 10px;
-        }
+section.active {
+    display: block;
+    opacity: 1;
+}
 
-        p {
-            font-size: 1.1em;
-            margin-bottom: 15px;
-            color: white; /* White text for paragraphs */
-        }
+h3 {
+    color: #B9975B;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+}
 
-        ul {
-            list-style-type: disc;
-            margin-left: 20px;
-            color: white; /* White text for list items */
-        }
+p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    font-weight: 400;
+}
 
-        li {
-            margin-bottom: 10px;
-        }
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
 
-        /* Footer Styles */
-        footer {
-            background-color: rgb(0, 133, 66); /* UNC Charlotte Green */
-            color: #B9975B; /* Gold text for the footer */
-            text-align: center;
-            padding: 10px;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
+li {
+    margin-bottom: 10px;
+}
 
-        /* Link Styles */
-        a {
-            color: #B9975B; /* Gold for links */
-            text-decoration: none;
-        }
+/* Footer Styles */
+footer {
+    background-color: rgb(0, 133, 66);
+    color: #B9975B;
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 1.1em;
+}
 
-        a:hover {
-            text-decoration: underline;
-            color: white; /* White on hover */
-        }
+/* Link Styles */
+a {
+    color: #B9975B;
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #B9975B;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+a:hover {
+    background-color: #A07C4F;
+    text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav a {
+        font-size: 1em;
+    }
+
+    iframe {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* Video Styles */
+iframe {
+    width: 100%;
+    height: 315px;
+    margin: 20px 0;
+    border: none;
+    border-radius: 10px;
+}
+
+/* Accessibility */
+a:focus, button:focus {
+    outline: 2px solid #B9975B;
+    outline-offset: 2px;
+}
     </style>
 </head>
 <body>
