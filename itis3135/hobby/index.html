@@ -241,6 +241,7 @@ a:focus, button:focus {
                 <li>Using CSS, HTML, and JavaScript give me a solution using section elements and a nav bar to where if one section is clicked, it shows only that section and the rest are hidden from view.</li>
                 <li>What are some suggested improvements to my css code to help make it look nicer?</li>
                 <li>Please help find any bugs or oversights in this code that could lead to any problems when publishing.</li>
+                <li>Please help me find any bugs in my JavaScript code and help suggest improvements that I could make.</li>
                 <li>No AI images were used, all were sourced from the PNNMB flickr which is made available to members.</li>
             </ul>
         </section>
@@ -252,33 +253,57 @@ a:focus, button:focus {
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Get all navigation links
-            const navLinks = document.querySelectorAll('.nav-link');
+    // Get all navigation links
+    const navLinks = document.querySelectorAll('.nav-link');
 
-            // Get all content sections
-            const contentSections = document.querySelectorAll('main section');
+    // Get all content sections
+    const contentSections = document.querySelectorAll('main section');
 
-            // Add click event listener to each link
-            navLinks.forEach(link => {
-                link.addEventListener('click', function (event) {
-                    event.preventDefault(); // Prevent default anchor behavior
-
-                    // Get the target section ID from the link's href
-                    const targetId = this.getAttribute('href').substring(1);
-
-                    // Hide all sections
-                    contentSections.forEach(section => {
-                        section.classList.remove('active');
-                    });
-
-                    // Show the target section
-                    const targetSection = document.getElementById(targetId);
-                    if (targetSection) {
-                        targetSection.classList.add('active');
-                    }
-                });
-            });
+    // Function to hide all sections
+    function hideAllSections() {
+        contentSections.forEach(section => {
+            section.classList.remove('active');
         });
+    }
+
+    // Function to show the target section
+    function showSection(targetId) {
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+            targetSection.classList.add('active');
+        }
+    }
+
+    // Add click event listener to each link
+    navLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default anchor behavior
+
+            // Get the target section ID from the link's href
+            const targetId = this.getAttribute('href').substring(1);
+
+            // Hide all sections
+            hideAllSections();
+
+            // Show the target section
+            showSection(targetId);
+
+            // Update the URL hash to reflect the current section
+            history.pushState(null, null, `#${targetId}`);
+        });
+    });
+
+    // Handle initial page load with a hash in the URL
+    const initialHash = window.location.hash.substring(1);
+    if (initialHash) {
+        hideAllSections();
+        showSection(initialHash);
+    } else {
+        // If no hash, show the first section by default
+        hideAllSections();
+        showSection(contentSections[0].id);
+    }
+});
     </script>
 </body>
 </html>
