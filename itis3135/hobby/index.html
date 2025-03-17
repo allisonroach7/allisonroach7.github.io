@@ -261,7 +261,7 @@ a:focus, button:focus {
 
     // Function to hide all sections
     function hideAllSections() {
-        contentSections.forEach(section => {
+        contentSections.forEach((section) => {
             section.classList.remove('active');
         });
     }
@@ -275,7 +275,7 @@ a:focus, button:focus {
     }
 
     // Add click event listener to each link
-    navLinks.forEach(link => {
+    navLinks.forEach((link) => {
         link.addEventListener('click', function (event) {
             event.preventDefault(); // Prevent default anchor behavior
 
