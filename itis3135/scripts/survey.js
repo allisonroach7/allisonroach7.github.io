@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize the form with one course entry
+    
     addCourse();
     
-    // Add event listeners
+   
     document.getElementById('add-course').addEventListener('click', addCourse);
     document.getElementById('byo-form').addEventListener('submit', validateForm);
     document.getElementById('reset-btn').addEventListener('click', resetForm);
@@ -35,12 +35,12 @@ function addCourse() {
 function validateForm(event) {
     event.preventDefault();
     
-    // Clear previous errors
+   
     clearErrors();
     
     let isValid = true;
     
-    // Validate required fields
+    
     if (!document.getElementById('name').value.trim()) {
         document.getElementById('name-error').textContent = 'Name is required';
         isValid = false;
@@ -90,7 +90,7 @@ function validateForm(event) {
         isValid = false;
     }
     
-    // Validate at least one course
+   
     const courseInputs = document.querySelectorAll('#courses-container input');
     let hasCourses = false;
     courseInputs.forEach(input => {
@@ -104,7 +104,7 @@ function validateForm(event) {
         isValid = false;
     }
     
-    // Validate agreement checkbox
+   
     if (!document.getElementById('agree').checked) {
         document.getElementById('agree-error').textContent = 'You must agree to the terms';
         isValid = false;
@@ -123,11 +123,9 @@ function clearErrors() {
 }
 
 function displayIntro() {
-    // Hide form and show display
+   
     document.getElementById('intro-form').style.display = 'none';
     document.getElementById('intro-display').style.display = 'block';
-    
-    // Set text content
     document.getElementById('display-name').textContent = document.getElementById('name').value;
     document.getElementById('display-mascot').textContent = document.getElementById('mascot').value;
     document.getElementById('display-image-caption').textContent = document.getElementById('image-caption').value;
@@ -139,7 +137,6 @@ function displayIntro() {
     document.getElementById('display-funny-thing').textContent = document.getElementById('funny-thing').value;
     document.getElementById('display-anything-else').textContent = document.getElementById('anything-else').value;
     
-    // Display courses
     const coursesList = document.getElementById('display-courses');
     coursesList.innerHTML = '';
     const courseInputs = document.querySelectorAll('#courses-container input');
@@ -151,7 +148,6 @@ function displayIntro() {
         }
     });
     
-    // Display image if uploaded
     const imageInput = document.getElementById('image');
     if (imageInput.files.length > 0) {
         const file = imageInput.files[0];
@@ -172,21 +168,19 @@ function resetForm(event) {
         event.preventDefault();
     }
     
-    // Show form and hide display
     document.getElementById('intro-form').style.display = 'block';
     document.getElementById('intro-display').style.display = 'none';
     
-    // Reset form fields (the form reset button handles most of this)
     document.getElementById('byo-form').reset();
     
-    // Reset courses (keep one empty entry)
+
     const container = document.getElementById('courses-container');
     container.innerHTML = '';
     addCourse();
     
-    // Clear errors
+
     clearErrors();
     
-    // Show image container again if it was hidden
+
     document.getElementById('display-image-container').style.display = 'block';
 }
