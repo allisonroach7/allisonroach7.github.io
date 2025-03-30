@@ -6,6 +6,135 @@
     <title>BYO Intro | Allison Roach | ITIS 3135</title>
     <link rel="stylesheet" href="styles/default.css">
     <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
+    <style>
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input[type="text"],
+        input[type="file"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        .course-entry {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        
+        .course-entry input {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+        
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        button, input[type="submit"], input[type="reset"] {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        button:hover, input[type="submit"]:hover, input[type="reset"]:hover {
+            background-color: #45a049;
+        }
+        
+        #add-course {
+            background-color: #2196F3;
+        }
+        
+        #add-course:hover {
+            background-color: #0b7dda;
+        }
+        
+        .delete-btn {
+            background-color: #f44336;
+        }
+        
+        .delete-btn:hover {
+            background-color: #d32f2f;
+        }
+        
+        #intro-display {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        #intro-display h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        #intro-display img {
+            max-width: 300px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        
+        #intro-display .section {
+            margin-bottom: 20px;
+        }
+        
+        #intro-display .section h3 {
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+        
+        #reset-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        #reset-link:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <div id="header"></div>
