@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You for Your Purchase!</title>
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .thank-you-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+            text-align: center;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .icon {
+            font-size: 4rem;
+            color: #27ae60;
+            margin-bottom: 1.5rem;
+            animation: bounce 1s infinite alternate;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .order-details {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .order-details h3 {
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .order-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .thank-you-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .order-info {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="thank-you-card">
+            <div class="icon">✓</div>
+            <h1>Thank You for Your Purchase!</h1>
+            <p>Your order has been received and is being processed. We've sent a confirmation email with all the details.</p>
+            
+            <div class="order-details">
+                <h3>Order Summary</h3>
+                <div class="order-info">
+                    <span>Order Number:</span>
+                    <span id="order-number">Loading...</span>
+                </div>
+                <div class="order-info">
+                    <span>Date:</span>
+                    <span id="order-date">Loading...</span>
+                </div>
+                <div class="order-info">
+                    <span>Total:</span>
+                    <span id="order-total">Loading...</span>
+                </div>
+            </div>
+            
+            <p>We appreciate your business and hope you enjoy your purchase!</p>
+            
+            <div class="action-buttons">
+                <a href="/" class="btn">Continue Shopping</a>
+                <a href="/contact" class="btn btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© <span id="current-year"></span> Your Company Name. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Set the current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Simulate loading order details (in a real app, you'd get these from your backend)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Generate a random order number
+            const orderNumber = 'ORD-' + Math.floor(Math.random() * 1000000);
+            document.getElementById('order-number').textContent = orderNumber;
+            
+            // Set current date
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const today = new Date();
+            document.getElementById('order-date').textContent = today.toLocaleDateString('en-US', options);
+            
+            // Get total from URL parameter or localStorage (simulated here)
+            const urlParams = new URLSearchParams(window.location.search);
+            const total = urlParams.get('total') || localStorage.getItem('orderTotal') || '$49.99';
+            document.getElementById('order-total').textContent = total;
+            
+            // You could also save this order data to localStorage
+            const orderData = {
+                number: orderNumber,
+                date: today,
+                total: total
+            };
+            localStorage.setItem('lastOrder', JSON.stringify(orderData));
+            
+            // Track the conversion (this would be your analytics code)
+            console.log('Purchase completed:', orderData);
+        });
+
+        // Optional: Add a confetti effect
+        function showConfetti() {
+            const confettiSettings = { 
+                target: 'confetti-canvas',
+                max: 150,
+                size: 1.5,
+                animate: true,
+                props: ['circle', 'square', 'triangle', 'line'],
+                colors: [[255,0,0],[0,255,0],[0,0,255]],
+                clock: 25,
+                rotate: true,
+                start_from_edge: true,
+                respawn: true
+            };
+            
+            // Only load confetti if it's a first-time visit to thank you page
+            if (!sessionStorage.getItem('confettiShown')) {
+                const confettiScript = document.createElement('script');
+                confettiScript.src = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js';
+                confettiScript.onload = () => {
+                    confetti.create(document.getElementById('confetti-canvas'), confettiSettings)();
+                };
+                document.head.appendChild(confettiScript);
+                sessionStorage.setItem('confettiShown', 'true');
+            }
+        }
+
+        // Uncomment to enable confetti (and add canvas element to HTML)
+        // showConfetti();
+    </script>
+    
+    <!-- Uncomment to enable confetti -->
+    <!-- <canvas id="confetti-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000;"></canvas> -->
+</body>
+</html>
