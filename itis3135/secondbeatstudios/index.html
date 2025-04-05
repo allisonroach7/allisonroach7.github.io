@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Second Beat Studios - Upcycled Musical Creations</title>
     <style>
-        /* Global Styles */
+        /* Base Styles */
         :root {
             --primary-bg: #EDF5EB;
             --accent-blue: #4BB3F0;
@@ -27,26 +27,17 @@
             line-height: 1.6;
         }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header & Navigation - Updated with logo */
+        /* Header Styles */
         header {
-            background-color: var(--text-light);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1rem 2rem;
+            background-color: var(--text-light);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         
         .logo-container {
@@ -54,105 +45,379 @@
             align-items: center;
         }
         
-        .logo-img {
-            height: 60px;
-            margin-right: 15px;
+        .logo {
+            max-height: 80px;
+            margin-right: 1rem;
         }
         
         .logo-text {
-            display: flex;
-            flex-direction: column;
-            color: var(--text-dark);
-        }
-        
-        .logo-top {
-            font-size: 20px;
             font-weight: bold;
-            letter-spacing: 1px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
         }
         
-        .logo-bottom {
-            font-size: 12px;
-            letter-spacing: 0.5px;
+        .logo-text span {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: normal;
+            text-transform: none;
         }
         
-        .nav-links {
+        /* Navigation Styles */
+        nav ul {
             display: flex;
             list-style: none;
         }
         
-        .nav-links li {
-            margin-left: 30px;
+        nav ul li {
+            margin-left: 1.5rem;
         }
         
-        .nav-links a {
-            color: var(--text-dark);
+        nav ul li a {
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
+            color: var(--text-dark);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
         }
         
-        .nav-links a:hover {
+        nav ul li a:hover {
+            background-color: var(--accent-blue);
+            color: var(--text-light);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            padding: 0 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-orange);
+            color: var(--text-light);
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Featured Products */
+        .featured {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background-color: var(--accent-orange);
+            bottom: -10px;
+            left: 25%;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .product-card {
+            background-color: var(--text-light);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-image {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+        
+        .product-info p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .price {
+            font-weight: bold;
             color: var(--accent-orange);
+            font-size: 1.2rem;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 4rem 2rem;
+            background-color: var(--text-light);
+            text-align: center;
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--text-light);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            max-height: 100px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            margin: 1.5rem 0;
+        }
+        
+        .social-links a {
+            color: var(--text-light);
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-blue);
+        }
+        
+        .copyright {
+            margin-top: 1.5rem;
+            color: #aaa;
         }
         
         /* Mobile Menu */
         .menu-toggle {
             display: none;
             cursor: pointer;
+            font-size: 1.5rem;
         }
         
-        /* Rest of the CSS remains the same */
-        /* ... */
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--text-light);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+            }
+            
+            nav ul.active {
+                left: 0;
+            }
+            
+            nav ul li {
+                margin: 1rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Header & Navigation with Logo -->
     <header>
-        <div class="container">
-            <nav>
-                <div class="logo-container">
-                    <img src="2ndbeatstudioslogo gear-5d98b51.png" alt="Second Beat Studios Logo" class="logo-img">
-                    <div class="logo-text">
-                        <span class="logo-top">SECOND BEAT</span>
-                        <span class="logo-bottom">STUDIOS LLC</span>
-                    </div>
-                </div>
-                
-                <div class="menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </div>
-                
-                <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">Gallery</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
+        <div class="logo-container">
+            <img src="2ndbeatstudioslogo gear-5d98b51.png" alt="Second Beat Studios Logo" class="logo">
+            <div class="logo-text">
+                SECOND BEAT <span>STUDIOS LLC</span>
+            </div>
         </div>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            ☰
+        </div>
+        
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contactus.html">Contact</a></li>
+            </ul>
+        </nav>
     </header>
-
-    <!-- Rest of your HTML content remains the same -->
+    
     <section class="hero">
-        <div class="hero-content">
-            <h1>Upcycled Musical Artistry</h1>
-            <p>Each piece in our collection tells a story - transforming retired instruments into functional art and unique decor that celebrates musical history.</p>
-            <a href="#" class="btn">Explore Creations</a>
+        <h1>Transforming Music Into Art</h1>
+        <p>Each piece in our collection is crafted from upcycled musical instruments, giving new life to the tools of melody and rhythm. Discover unique furniture, decor, and functional art with a musical soul.</p>
+        <a href="#" class="btn">Explore Our Creations</a>
+    </section>
+    
+    <section class="featured">
+        <h2 class="section-title">Featured Products</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Guitar Lamp" class="product-image">
+                <div class="product-info">
+                    <h3>Vintage Guitar Lamp</h3>
+                    <p>Handcrafted from a 1960s acoustic guitar, this unique lamp brings warm light and musical history to any room.</p>
+                    <p class="price">$249.99</p>
+                    <a href="#" class="btn">View Details</a>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Drum Table" class="product-image">
+                <div class="product-info">
+                    <h3>Snare Drum Side Table</h3>
+                    <p>Repurposed vintage snare drum with tempered glass top creates a perfect conversation piece for your living space.</p>
+                    <p class="price">$189.99</p>
+                    <a href="#" class="btn">View Details</a>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Violin Shelf" class="product-image">
+                <div class="product-info">
+                    <h3>Violin Wall Shelf</h3>
+                    <p>Beautifully upcycled violin transformed into a functional wall shelf, perfect for displaying small treasures.</p>
+                    <p class="price">$159.99</p>
+                    <a href="#" class="btn">View Details</a>
+                </div>
+            </div>
         </div>
     </section>
-
-    <!-- ... (rest of your HTML) ... -->
-
-    <!-- Font Awesome for icons -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     
-    <!-- JavaScript for mobile menu -->
+    <section class="about">
+        <div class="about-content">
+            <h2 class="section-title">Our Story</h2>
+            <p>Second Beat Studios was born from a passion for music and sustainability. We believe that every instrument has a story to tell, even after its musical life has ended. Our team of artisans carefully transforms these instruments into functional art pieces that preserve their musical heritage while serving new purposes.</p>
+            <p>Each creation in our collection is truly one-of-a-kind, just like the instruments they come from. We work with local musicians, schools, and collectors to source materials that would otherwise go to waste, giving them a second beat at life.</p>
+            <a href="about.html" class="btn">Learn More About Our Process</a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <img src="2ndbeatstudioslogo gear-5d98b51.png" alt="Second Beat Studios Logo" class="footer-logo">
+            <p>Upcycled • One of a Kind • Custom Works</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-etsy"></i></a>
+            </div>
+            <p class="copyright">© 2025 Second Beat Studios LLC. All rights reserved.</p>
+        </div>
+    </footer>
+    
     <script>
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
+        // Mobile Menu Toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
         });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Add Font Awesome for icons (you can also include this in head)
+        const faScript = document.createElement('script');
+        faScript.src = 'https://kit.fontawesome.com/a076d05399.js';
+        faScript.crossOrigin = 'anonymous';
+        document.head.appendChild(faScript);
     </script>
 </body>
 </html>
