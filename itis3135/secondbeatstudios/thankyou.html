@@ -210,39 +210,6 @@
             // Track the conversion (this would be your analytics code)
             console.log('Purchase completed:', orderData);
         });
-
-        // Optional: Add a confetti effect
-        function showConfetti() {
-            const confettiSettings = { 
-                target: 'confetti-canvas',
-                max: 150,
-                size: 1.5,
-                animate: true,
-                props: ['circle', 'square', 'triangle', 'line'],
-                colors: [[255,0,0],[0,255,0],[0,0,255]],
-                clock: 25,
-                rotate: true,
-                start_from_edge: true,
-                respawn: true
-            };
-            
-            // Only load confetti if it's a first-time visit to thank you page
-            if (!sessionStorage.getItem('confettiShown')) {
-                const confettiScript = document.createElement('script');
-                confettiScript.src = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js';
-                confettiScript.onload = () => {
-                    confetti.create(document.getElementById('confetti-canvas'), confettiSettings)();
-                };
-                document.head.appendChild(confettiScript);
-                sessionStorage.setItem('confettiShown', 'true');
-            }
-        }
-
-        // Uncomment to enable confetti (and add canvas element to HTML)
-        // showConfetti();
     </script>
-    
-    <!-- Uncomment to enable confetti -->
-    <!-- <canvas id="confetti-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000;"></canvas> -->
 </body>
 </html>
