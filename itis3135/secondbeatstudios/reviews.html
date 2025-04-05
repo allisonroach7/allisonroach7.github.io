@@ -476,8 +476,17 @@
                 date: "Aug 21, 2023",
                 text: "The seller was very willing to accept my unusual request to make a lamp out of 2 instruments. The communication was friendly and fast, the sales process uncomplicated. The package arrived very well packed. Unfortunately, the assembly of the second instrument was insufficient and had to be reworked. The promised assembly video did not reach me. All in all a very nice lamp of good quality!",
                 item: "Upcycle Dual Music Instrument Lamp",
-                images: []
+                images: ["https://i.etsystatic.com/5165481605/r/il/72b10a/5165481605/il_170x135.5165481605_7ns0.jpg"]
             },
+            {
+                id: 10,
+                reviewer: "Julia",
+                rating: 2,
+                date: "Jul 14, 2024",
+                text: "Shipping takes forever, shipping is much more expensive than the item plus customs...not worth it if you live in Germany. I didn't pay attention to where it came from and would definitely not order it again, although the cards are really cute and well made.",
+                item: "Teeny Tiny Turtle",
+                images: ["https://i.etsystatic.com/5532682449/r/il/1ab416/5532682449/il_170x135.5532682449_e7w9.jpg"]
+            }
         ];
 
         // Function to render stars based on rating
@@ -537,23 +546,6 @@
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
             renderReviews();
-            
-            // Add pagination click handlers
-            const paginationButtons = document.querySelectorAll('.pagination button');
-            paginationButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    paginationButtons.forEach(btn => btn.classList.remove('active'));
-                    
-                    // Add active class to clicked button if it's a number
-                    if (!isNaN(parseInt(this.textContent)) || this.textContent === '1') {
-                        this.classList.add('active');
-                    }
-                    
-                    // In a real app, this would load the appropriate page of reviews
-                    console.log(`Loading page ${this.textContent}`);
-                });
-            });
         });
     </script>
 </body>
