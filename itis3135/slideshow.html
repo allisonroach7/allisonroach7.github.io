@@ -3,82 +3,293 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
-    <title>Image Slideshow - Allison Roach</title>
+    <title>Allison Roach's Letter Slideshow</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .slideshow-container {
+            max-width: 800px;
+            position: relative;
+            margin: auto;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .slide {
+            display: none;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .caption {
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+        
+        .dot-container {
+            text-align: center;
+            padding: 20px;
+            background-color: #f1f1f1;
+        }
+        
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+        
+        .dot.active, .dot:hover {
+            background-color: #717171;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .ai-notes {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .ai-notes h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .ai-notes ul {
+            padding-left: 20px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>ITIS 3135 - Allison Roach</h1>
-    </header>
-    <main>
-        <h2>Image Slideshow</h2>
-        <div class="container">
-
-            <!-- Full-width images with number text -->
-            <div class="mySlides">
-              <div class="numbertext">1 / 6</div>
-                <img src="img_woods_wide.jpg" style="width:100%">
-            </div>
-          
-            <div class="mySlides">
-              <div class="numbertext">2 / 6</div>
-                <img src="img_5terre_wide.jpg" style="width:100%">
-            </div>
-          
-            <div class="mySlides">
-              <div class="numbertext">3 / 6</div>
-                <img src="img_mountains_wide.jpg" style="width:100%">
-            </div>
-          
-            <div class="mySlides">
-              <div class="numbertext">4 / 6</div>
-                <img src="img_lights_wide.jpg" style="width:100%">
-            </div>
-          
-            <div class="mySlides">
-              <div class="numbertext">5 / 6</div>
-                <img src="img_nature_wide.jpg" style="width:100%">
-            </div>
-          
-            <div class="mySlides">
-              <div class="numbertext">6 / 6</div>
-                <img src="img_snow_wide.jpg" style="width:100%">
-            </div>
-          
-            <!-- Next and previous buttons -->
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-          
-            <!-- Image text -->
-            <div class="caption-container">
-              <p id="caption"></p>
-            </div>
-          
-            <!-- Thumbnail images -->
-            <div class="row">
-              <div class="column">
-                <img class="demo cursor" src="img_woods.jpg" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
-              </div>
-              <div class="column">
-                <img class="demo cursor" src="img_5terre.jpg" style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre">
-              </div>
-              <div class="column">
-                <img class="demo cursor" src="img_mountains.jpg" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
-              </div>
-              <div class="column">
-                <img class="demo cursor" src="img_lights.jpg" style="width:100%" onclick="currentSlide(4)" alt="Northern Lights">
-              </div>
-              <div class="column">
-                <img class="demo cursor" src="img_nature.jpg" style="width:100%" onclick="currentSlide(5)" alt="Nature and sunrise">
-              </div>
-              <div class="column">
-                <img class="demo cursor" src="img_snow.jpg" style="width:100%" onclick="currentSlide(6)" alt="Snowy Mountains">
-              </div>
-            </div>
-          </div>
-    </main>
-    <footer>
-        <script src="scripts/HTMLInclude.min.js"></script>
-    </footer>
+    <h1>Allison Roach's Letter Slideshow</h1>
+    
+    <div class="slideshow-container">
+        <!-- Slide 1 -->
+        <div class="slide">
+            <img src="images/ai-apple.png" alt="A - Apple">
+            <div class="caption">A - Apple (1st letter in Allison)</div>
+        </div>
+        
+        <!-- Slide 2 -->
+        <div class="slide">
+            <img src="images/ai-lamp.png" alt="L - Lamp">
+            <div class="caption">L - Lamp (2nd letter in Allison)</div>
+        </div>
+        
+        <!-- Slide 3 -->
+        <div class="slide">
+            <img src="images/ai-lemon.png" alt="L - Lemon">
+            <div class="caption">L - Lemon (3rd letter in Allison)</div>
+        </div>
+        
+        <!-- Slide 4 -->
+        <div class="slide">
+            <img src="images/ai-icecube.png" alt="I - Ice">
+            <div class="caption">I - Ice (4th letter in Allison)</div>
+        </div>
+        
+        <!-- Slide 5 -->
+        <div class="slide">
+            <img src="images/ai-sneakers.jpg" alt="S - Shoe">
+            <div class="caption">S - Shoe (5th letter in Allison)</div>
+        </div>
+        
+        <!-- Slide 6 -->
+        <div class="slide">
+            <img src="images/ai-orange.jpg" alt="O - Orange">
+            <div class="caption">O - Orange (6th letter in Allison)</div>
+        </div>
+        
+        <!-- Slide 7 -->
+        <div class="slide">
+            <img src="images/ai-notebook.jpg" alt="N - Notebook">
+            <div class="caption">N - Notebook (7th letter in Allison)</div>
+        </div>
+        
+        <!-- Slide 8 -->
+        <div class="slide">
+            <img src="images/ai-rose.jpg" alt="R - Rose">
+            <div class="caption">R - Rose (1st letter in Roach)</div>
+        </div>
+        
+        <!-- Slide 9 -->
+        <div class="slide">
+            <img src="images/ai-owl.jpg" alt="O - Owl">
+            <div class="caption">O - Owl (2nd letter in Roach)</div>
+        </div>
+        
+        <!-- Slide 10 -->
+        <div class="slide">
+            <img src="images/ai-airplane.jpg" alt="A - Airplane">
+            <div class="caption">A - Airplane (3rd letter in Roach)</div>
+        </div>
+        
+        <!-- Slide 11 -->
+        <div class="slide">
+            <img src="images/ai-camera.jpg" alt="C - Camera">
+            <div class="caption">C - Camera (4th letter in Roach)</div>
+        </div>
+        
+        <!-- Slide 12 -->
+        <div class="slide">
+            <img src="images/Gemini_Generated_Image_5v6avr5v6avr5v6a.jpg" alt="H - Hat">
+            <div class="caption">H - Hat (5th letter in Roach)</div>
+        </div>
+        
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+    </div>
+    
+    <div class="dot-container">
+        <span class="dot" onclick="currentSlide(1)"></span> 
+        <span class="dot" onclick="currentSlide(2)"></span> 
+        <span class="dot" onclick="currentSlide(3)"></span> 
+        <span class="dot" onclick="currentSlide(4)"></span> 
+        <span class="dot" onclick="currentSlide(5)"></span>
+        <span class="dot" onclick="currentSlide(6)"></span>
+        <span class="dot" onclick="currentSlide(7)"></span>
+        <span class="dot" onclick="currentSlide(8)"></span>
+        <span class="dot" onclick="currentSlide(9)"></span>
+        <span class="dot" onclick="currentSlide(10)"></span>
+        <span class="dot" onclick="currentSlide(11)"></span>
+        <span class="dot" onclick="currentSlide(12)"></span>
+    </div>
+    
+    <div class="ai-notes">
+        <h3>AI Image Generation Notes</h3>
+        <p>These prompts were used to generate the images used for the slideshow:</p>
+        <ul>
+            <li>A - "A shiny red apple on a wooden table, photorealistic"</li>
+            <li>L - "A modern desk lamp with warm lighting, product photography style"</li>
+            <li>L - "A sliced lemon on a blue background, high resolution"</li>
+            <li>I - "Ice cubes in a glass with condensation, macro photography"</li>
+            <li>S - "A pair of white sneakers on a clean surface, studio lighting"</li>
+            <li>O - "A fresh orange sliced in half with juice droplets, food photography"</li>
+            <li>N - "A leather-bound notebook with pen, flat lay composition"</li>
+            <li>R - "A red rose with dewdrops, close-up nature photography"</li>
+            <li>O - "A wise-looking owl perched on a branch at dusk"</li>
+            <li>A - "A vintage airplane flying over clouds, golden hour lighting"</li>
+            <li>C - "A professional DSLR camera with lens, product shot"</li>
+            <li>H - "A stylish wide-brimmed hat on a beach with sunset"</li>
+        </ul>
+        <p>DALLE-3 and Google Gemini were used to generate all images</p>
+    </div>
+    
+    <div class="footer">
+        <p>Created by Allison Roach | ITIS 3135 | <a href="https://www.w3schools.com/howto/howto_js_slideshow.asp" target="_blank">Slideshow Reference</a></p>
+    </div>
+    
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+        
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+        
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+        
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("slide");
+            let dots = document.getElementsByClassName("dot");
+            
+            if (n > slides.length) {
+                slideIndex = 1;
+            }
+            
+            if (n < 1) {
+                slideIndex = slides.length;
+            }
+            
+            for (i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+            }
+            
+            for (i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active");
+            }
+            
+            slides[slideIndex-1].classList.add("active");
+            dots[slideIndex-1].classList.add("active");
+        }
+        
+        // Auto-advance slides every 5 seconds
+        setInterval(function() {
+            plusSlides(1);
+        }, 5000);
+    </script>
 </body>
 </html>
