@@ -3,36 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peer Review Checklist</title>
+    <title>Peer Review Checklist - Allison Roach</title>
     <style>
-        /* CSS Reset */
+        /* Basic Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
-        /* Global Styles */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
             line-height: 1.6;
             color: #333;
-            background-color: #f9f9f9;
+            background-color: #f5f5f5;
             padding: 20px;
         }
         
         .container {
-            max-width: 1000px;
+            max-width: 800px;
             margin: 0 auto;
             background: white;
-            padding: 20px;
-            border-radius: 8px;
+            padding: 30px;
+            border-radius: 5px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         
-        h1, h2, h3 {
+        h1, h2 {
             color: #2c3e50;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         
         h1 {
@@ -43,39 +42,28 @@
         h2 {
             color: #2980b9;
             margin-top: 25px;
+            font-size: 1.3em;
         }
         
         /* Checklist Styles */
         .checklist {
-            margin: 20px 0;
+            margin: 25px 0;
         }
         
         .checklist-item {
-            margin-bottom: 15px;
-            padding-left: 30px;
-            position: relative;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
         }
         
-        .checklist-item:before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 5px;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #3498db;
-            border-radius: 3px;
-            background: white;
+        .checklist-item:last-child {
+            border-bottom: none;
         }
         
-        .checklist-item.completed:before {
-            background: #2ecc71;
-            border-color: #27ae60;
-            content: "✓";
-            color: white;
-            text-align: center;
-            line-height: 20px;
-            font-size: 14px;
+        .checklist-item label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
         }
         
         .sub-checklist {
@@ -83,69 +71,29 @@
             margin-top: 10px;
         }
         
-        .sub-checklist .checklist-item {
-            font-size: 0.95em;
-        }
-        
-        /* Form Styles */
-        .review-form {
-            margin-top: 30px;
-            padding: 20px;
-            background: #f1f9ff;
-            border-radius: 5px;
-        }
-        
-        textarea {
-            width: 100%;
+        .comment {
+            margin-top: 10px;
             padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            min-height: 100px;
-            margin-bottom: 15px;
-            font-family: inherit;
-        }
-        
-        button {
-            background: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        
-        button:hover {
-            background: #2980b9;
+            background-color: #f9f9f9;
+            border-left: 3px solid #3498db;
         }
         
         /* Footer Styles */
         footer {
             margin-top: 40px;
             padding-top: 20px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid #ddd;
             font-size: 0.9em;
             color: #7f8c8d;
         }
         
-        .footer-menu {
-            display: flex;
-            list-style: none;
-            margin-bottom: 15px;
-        }
-        
-        .footer-menu li {
-            margin-right: 15px;
-        }
-        
-        .footer-menu a {
-            color: #3498db;
-            text-decoration: none;
-        }
-        
         .validations {
-            display: flex;
-            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .validations a {
+            color: #3498db;
+            margin-right: 15px;
         }
     </style>
 </head>
@@ -153,19 +101,21 @@
     <div class="container">
         <header>
             <h1>Peer Review Checklist</h1>
-            <p class="tagline">Ensuring quality web development standards</p>
+            <p class="tagline">Web Development Standards Review</p>
         </header>
         
         <main>
-            <h2>Review for: [Student Name]</h2>
+            <h2>Review for: Andrews Palaparthi</h2>
             
             <div class="checklist">
                 <div class="checklist-item">
                     <label>1. Your submission leads right to the page to be reviewed</label>
+                    <p class="comment">Could not find on course website or GitHub.</p>
                 </div>
                 
                 <div class="checklist-item">
                     <label>2. There are no spaces or upper-cases in the file/folder names including scripts, images, etc.</label>
+                    <p class="comment"><!-- Your comments here --></p>
                 </div>
                 
                 <div class="checklist-item">
@@ -173,24 +123,30 @@
                     <div class="sub-checklist">
                         <div class="checklist-item">
                             <label>a. Page has sufficient contrast / font sizing so as to be easy to read</label>
+                            <p class="comment"><!-- Your comments here --></p>
                         </div>
                         <div class="checklist-item">
                             <label>b. Page has site colors and fonts using the standard .css file, unless the assignment requires an embedded one</label>
+                            <p class="comment"><!-- Your comments here --></p>
                         </div>
                         <div class="checklist-item">
                             <label>c. CRAP Principles</label>
                             <div class="sub-checklist">
                                 <div class="checklist-item">
                                     <label>I. Contrast</label>
+                                    <p class="comment"><!-- Your comments here --></p>
                                 </div>
                                 <div class="checklist-item">
                                     <label>II. Repetition</label>
+                                    <p class="comment"><!-- Your comments here --></p>
                                 </div>
                                 <div class="checklist-item">
                                     <label>III. Alignment</label>
+                                    <p class="comment"><!-- Your comments here --></p>
                                 </div>
                                 <div class="checklist-item">
                                     <label>IV. Proximity</label>
+                                    <p class="comment"><!-- Your comments here --></p>
                                 </div>
                             </div>
                         </div>
@@ -202,29 +158,36 @@
                     <div class="sub-checklist">
                         <div class="checklist-item">
                             <label>a. Header</label>
+                            <p class="comment"><!-- Your comments here --></p>
                         </div>
                         <div class="checklist-item">
                             <label>b. Main</label>
+                            <p class="comment"><!-- Your comments here --></p>
                         </div>
                         <div class="checklist-item">
                             <label>c. Footer</label>
+                            <p class="comment"><!-- Your comments here --></p>
                         </div>
                         <div class="checklist-item">
                             <label>d. (optional) nav for main menu between header and main</label>
+                            <p class="comment"><!-- Your comments here --></p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="checklist-item">
                     <label>5. Header has site/brand header with text in an h1</label>
+                    <p class="comment"><!-- Your comments here --></p>
                 </div>
                 
                 <div class="checklist-item">
                     <label>6. Main starts with name of page as h2 and does not include name of site/brand</label>
+                    <p class="comment"><!-- Your comments here --></p>
                 </div>
                 
                 <div class="checklist-item">
                     <label>7. Page has brand tagline somewhere</label>
+                    <p class="comment"><!-- Your comments here --></p>
                 </div>
                 
                 <div class="checklist-item">
@@ -232,52 +195,38 @@
                     <div class="sub-checklist">
                         <div class="checklist-item">
                             <label>a. Menu for user's pages</label>
+                            <p class="comment"><!-- Your comments here --></p>
                         </div>
                         <div class="checklist-item">
                             <label>b. Page has HTML validation</label>
+                            <p class="comment"><!-- Your comments here --></p>
                         </div>
                         <div class="checklist-item">
                             <label>c. Page has CSS validation</label>
+                            <p class="comment"><!-- Your comments here --></p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="checklist-item">
                     <label>9. Page has specific requirements for this assignment</label>
+                    <p class="comment"><!-- Your comments here --></p>
                 </div>
             </div>
             
-            <div class="review-form">
-                <h3>Additional Comments</h3>
-                <textarea placeholder="Enter any additional feedback here..."></textarea>
-                <button type="submit">Submit Review</button>
+            <div class="general-comments">
+                <h2>General Comments</h2>
+                <p class="comment"><!-- Your overall comments here --></p>
             </div>
         </main>
         
         <footer>
-            <ul class="footer-menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Assignments</a></li>
-                <li><a href="#">Resources</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-            
             <div class="validations">
                 <a href="https://validator.w3.org/" target="_blank">HTML Validation</a>
                 <a href="https://jigsaw.w3.org/css-validator/" target="_blank">CSS Validation</a>
             </div>
-            
-            <p>&copy; 2023 Web Development Course. All rights reserved.</p>
+            <p>&copy; 2023 Web Development Course</p>
         </footer>
     </div>
-    
-    <script>
-        // Simple script to toggle checklist items
-        document.querySelectorAll('.checklist-item').forEach(item => {
-            item.addEventListener('click', function() {
-                this.classList.toggle('completed');
-            });
-        });
-    </script>
 </body>
 </html>
