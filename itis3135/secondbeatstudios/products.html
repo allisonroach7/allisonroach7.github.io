@@ -114,8 +114,26 @@
             </ul>
             </nav>
     </header>
-    <main>
-
+    <main class="products-container">
+        <h1>Our Past Products</h1>
+        
+        <div class="filter-controls">
+            <button class="filter-btn active" data-category="all">All Products</button>
+            <button class="filter-btn" data-category="category1">Category 1</button>
+            <button class="filter-btn" data-category="category2">Category 2</button>
+        </div>
+        
+        <div class="products-grid" id="products-grid">
+            <!-- Products will be loaded via JavaScript -->
+        </div>
+        
+        <div class="slideshow-container">
+            <div class="slideshow" id="featured-slideshow">
+                <!-- Slideshow items will be loaded via JavaScript -->
+            </div>
+            <button class="slideshow-btn prev">❮</button>
+            <button class="slideshow-btn next">❯</button>
+        </div>
     </main>
     <footer>
         <div class="footer-content">
