@@ -306,30 +306,7 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo-container">
-            <img src="images/qt=q_95.png" alt="Second Beat Studios Logo" class="logo">
-            <div class="logo-text">
-                SECOND BEAT <span>STUDIOS LLC</span>
-            </div>
-        </div>
-        
-        <div class="menu-toggle" id="mobile-menu">
-            ☰
-        </div>
-        
-        <nav>
-            <ul id="nav-menu">
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="https://www.etsy.com/shop/SecondBeatStudios?ref=shop-header-name&listing_id=1418624388&from_page=listing">Shop</a></li>
-                <li><a href="products.html">Past Products</a></li>
-                <li><a href="thankyou.html">Thank You Page</a></li>
-                <li><a href="reviews.html">Reviews</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contactus.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <header id="dynamic-header"></header>
     
     <section class="hero">
         <h1>Transforming Music Into Art</h1>
@@ -381,18 +358,7 @@
         </div>
     </section>
     
-    <footer>
-        <div class="footer-content">
-            <p>Upcycled • One of a Kind • Custom Works</p>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-pinterest"></i></a>
-                <a href="#"><i class="fab fa-etsy"></i></a>
-            </div>
-            <p class="copyright">© 2025 Second Beat Studios LLC. All rights reserved.</p>
-        </div>
-    </footer>
+    <footer id="dynamic-footer"></footer>
     
     <script>
         // Mobile Menu Toggle
@@ -420,11 +386,6 @@
         faScript.crossOrigin = 'anonymous';
         document.head.appendChild(faScript);
     </script>
-     <script>
-        document.getElementById("validation_link_html").setAttribute("href",
-            "https://validator.w3.org/check?uri=" + location.href);
-        document.getElementById("validation_link_css").setAttribute("href",
-            "https://jigsaw.w3.org/css-validator/validator?uri=" + location.href);
-    </script>
+    <script src="scripts/secondbeatdynamic.js"></script>
 </body>
 </html>
