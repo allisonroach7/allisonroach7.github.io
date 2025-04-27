@@ -63,8 +63,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Validation links
-document.getElementById("validation_link_html").setAttribute("href",
-    "https://validator.w3.org/check?uri=" + location.href);
-document.getElementById("validation_link_css").setAttribute("href",
-    "https://jigsaw.w3.org/css-validator/validator?uri=" + location.href);
+// Validation links - only include if these elements exist in your HTML
+const htmlValidationLink = document.getElementById("validation_link_html");
+const cssValidationLink = document.getElementById("validation_link_css");
+
+if (htmlValidationLink) {
+    htmlValidationLink.setAttribute("href",
+        "https://validator.w3.org/check?uri=" + location.href);
+}
+
+if (cssValidationLink) {
+    cssValidationLink.setAttribute("href",
+        "https://jigsaw.w3.org/css-validator/validator?uri=" + location.href);
+}
