@@ -123,6 +123,7 @@ main.products-container h1 {
 }
 
 /* Slideshow styles */
+/* Updated Slideshow Styles */
 .slideshow-container {
     position: relative;
     max-width: 800px;
@@ -130,19 +131,33 @@ main.products-container h1 {
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    background-color: var(--text-light); /* Added background for better contrast */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px; /* Changed from height to min-height */
 }
 
 .slideshow {
     display: flex;
     transition: transform 0.5s ease;
-    height: 400px; /* Adjust this to control slideshow height */
+    width: 100%;
+}
+
+.slide {
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--text-light); /* Match container background */
 }
 
 .slideshow img {
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 400px; /* Control image size */
+    width: auto;
+    height: auto;
     object-fit: contain;
-    flex-shrink: 0;
 }
 
 .slideshow-btn {
@@ -160,66 +175,25 @@ main.products-container h1 {
     transition: all 0.3s ease;
 }
 
-.slideshow-btn:hover {
-    background-color: var(--accent-blue);
-}
-
-.slideshow-btn.prev {
-    left: 1rem;
-}
-
-.slideshow-btn.next {
-    right: 1rem;
-}
-
-/* Footer styles */
-footer {
-    background-color: var(--text-dark);
-    color: var(--text-light);
-    text-align: center;
-    padding: 2rem;
-    margin-top: 2rem;
-}
-
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.social-links {
-    margin: 1rem 0;
-}
-
-.social-links a {
-    color: var(--text-light);
-    margin: 0 0.5rem;
-    font-size: 1.5rem;
-    transition: color 0.3s ease;
-}
-
-.social-links a:hover {
-    color: var(--accent-orange);
-}
-
-.copyright {
-    font-size: 0.9rem;
-    opacity: 0.8;
-}
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .slideshow-container {
         max-width: 90%;
+        min-height: 300px;
     }
     
-    .slideshow {
-        height: 300px;
+    .slideshow img {
+        max-height: 300px;
     }
 }
 
 @media (max-width: 480px) {
-    .slideshow {
-        height: 250px;
+    .slideshow-container {
+        min-height: 250px;
+    }
+    
+    .slideshow img {
+        max-height: 250px;
     }
     
     .slideshow-btn {
