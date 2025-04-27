@@ -360,32 +360,6 @@
     
     <footer id="dynamic-footer"></footer>
     
-    <script>
-        // Mobile Menu Toggle
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navMenu = document.getElementById('nav-menu');
-        
-        mobileMenu.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-        
-        // Add Font Awesome for icons (you can also include this in head)
-        const faScript = document.createElement('script');
-        faScript.src = 'https://kit.fontawesome.com/a076d05399.js';
-        faScript.crossOrigin = 'anonymous';
-        document.head.appendChild(faScript);
-    </script>
-    <script src="scripts/secondbeatdynamic.js"></script>
+    <script src = "scripts/secondbeatdynamic.js"></script>
 </body>
 </html>
