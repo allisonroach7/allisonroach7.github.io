@@ -101,29 +101,7 @@ main.products-container h1 {
     color: var(--accent-orange);
 }
 
-/* Filter buttons */
-.filter-controls {
-    margin-bottom: 2rem;
-}
-
-.filter-btn {
-    padding: 0.5rem 1rem;
-    margin: 0 0.5rem;
-    background-color: var(--text-light);
-    border: 1px solid var(--accent-blue);
-    border-radius: 4px;
-    color: var(--text-dark);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.filter-btn.active, .filter-btn:hover {
-    background-color: var(--accent-blue);
-    color: var(--text-light);
-}
-
 /* Slideshow styles */
-/* Updated Slideshow Styles */
 .slideshow-container {
     position: relative;
     max-width: 800px;
@@ -237,11 +215,6 @@ main.products-container h1 {
     <main class="products-container">
         <h1>Our Past Products</h1>
         
-        <div class="filter-controls">
-            <button class="filter-btn active" data-category="all">All Products</button>
-            <button class="filter-btn" data-category="category1">Category 1</button>
-            <button class="filter-btn" data-category="category2">Category 2</button>
-        </div>
         
         <div class="products-grid" id="products-grid">
             
