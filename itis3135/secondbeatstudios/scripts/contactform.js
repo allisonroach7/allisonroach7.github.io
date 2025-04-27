@@ -61,7 +61,7 @@ document.getElementById('contactForm').addEventListener('submit', function(event
     
     // If form is valid, show success message
     if (isValid) {
-        // In a real application, you would send the data to a server here
+        // Due to security issues, and not knowing how to implement this safely (yet) I have not attached the form to my real client's email to prevent spam and/or other malicious attacks.
         // For this example, we'll just show a success message
         
         const successMessage = document.getElementById('successMessage');
