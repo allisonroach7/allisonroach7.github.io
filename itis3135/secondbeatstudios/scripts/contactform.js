@@ -1,91 +1,171 @@
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu toggle functionality
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navMenu = document.getElementById('nav-menu');
     
-    // Reset error messages
-    const errorMessages = document.querySelectorAll('.error-message');
-    errorMessages.forEach(msg => {
-        msg.style.display = 'none';
-    });
-    
-    // Get form values
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const subject = document.getElementById('subject').value;
-    const message = document.getElementById('message').value.trim();
-    
-    let isValid = true;
-    
-    // Validate name
-    if (name === '') {
-        document.getElementById('nameError').textContent = 'Name is required';
-        document.getElementById('nameError').style.display = 'block';
-        isValid = false;
+    if (mobileMenu && navMenu) {
+        mobileMenu.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
     }
-    
-    // Validate email
-    if (email === '') {
-        document.getElementById('emailError').textContent = 'Email is required';
-        document.getElementById('emailError').style.display = 'block';
-        isValid = false;
-    } else if (!isValidEmail(email)) {
-        document.getElementById('emailError').textContent = 'Please enter a valid email address';
-        document.getElementById('emailError').style.display = 'block';
-        isValid = false;
+
+    // Form validation
+    const contactForm = document.getElementById('contactForm');
+    const successMessage = document.getElementById('successMessage');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Reset previous error messages
+            clearErrorMessages();
+            
+            // Validate form fields
+            const isNameValid = validateName();
+            const isEmailValid = validateEmail();
+            const isPhoneValid = validatePhone();
+            const isSubjectValid = validateSubject();
+            const isMessageValid = validateMessage();
+            
+            // If all validations pass
+            if (isNameValid && isEmailValid && isPhoneValid && isSubjectValid && isMessageValid) {
+                // For security reasons, and because I do not know how to implement this yet, this does not yet send to a real email. This is because I do not know how to prevent spam/other attacks that could be vunerable to my client right now.
+                // For this example, we'll just show a success message
+                
+                successMessage.textContent = 'Thank you for your message! We will get back to you soon.';
+                successMessage.style.display = 'block';
+                
+                // Reset the form
+                contactForm.reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 5000);
+            }
+        });
     }
-    
-    // Validate phone (if provided)
-    if (phone !== '' && !isValidPhone(phone)) {
-        document.getElementById('phoneError').textContent = 'Please enter a valid phone number';
-        document.getElementById('phoneError').style.display = 'block';
-        isValid = false;
-    }
-    
-    // Validate subject
-    if (subject === '') {
-        document.getElementById('subjectError').textContent = 'Please select a subject';
-        document.getElementById('subjectError').style.display = 'block';
-        isValid = false;
-    }
-    
-    // Validate message
-    if (message === '') {
-        document.getElementById('messageError').textContent = 'Message is required';
-        document.getElementById('messageError').style.display = 'block';
-        isValid = false;
-    } else if (message.length < 10) {
-        document.getElementById('messageError').textContent = 'Message should be at least 10 characters';
-        document.getElementById('messageError').style.display = 'block';
-        isValid = false;
-    }
-    
-    // If form is valid, show success message
-    if (isValid) {
-        // Due to security issues, and not knowing how to implement this safely (yet) I have not attached the form to my real client's email to prevent spam and/or other malicious attacks.
-        // For this example, we'll just show a success message
+
+    // Validation functions
+    function validateName() {
+        const nameInput = document.getElementById('name');
+        const nameError = document.getElementById('nameError');
         
-        const successMessage = document.getElementById('successMessage');
-        successMessage.textContent = 'Thank you for your message! We will get back to you soon.';
-        successMessage.style.display = 'block';
+        if (nameInput.value.trim() === '') {
+            nameError.textContent = 'Name is required';
+            nameError.style.display = 'block';
+            nameInput.focus();
+            return false;
+        }
         
-        // Reset form
-        document.getElementById('contactForm').reset();
+        if (nameInput.value.trim().length < 2) {
+            nameError.textContent = 'Name must be at least 2 characters';
+            nameError.style.display = 'block';
+            nameInput.focus();
+            return false;
+        }
         
-        // Hide success message after 5 seconds
-        setTimeout(() => {
+        return true;
+    }
+    
+    function validateEmail() {
+        const emailInput = document.getElementById('email');
+        const emailError = document.getElementById('emailError');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        if (emailInput.value.trim() === '') {
+            emailError.textContent = 'Email is required';
+            emailError.style.display = 'block';
+            emailInput.focus();
+            return false;
+        }
+        
+        if (!emailRegex.test(emailInput.value)) {
+            emailError.textContent = 'Please enter a valid email address';
+            emailError.style.display = 'block';
+            emailInput.focus();
+            return false;
+        }
+        
+        return true;
+    }
+    
+    function validatePhone() {
+        const phoneInput = document.getElementById('phone');
+        const phoneError = document.getElementById('phoneError');
+        
+        // Phone is optional, but if provided, validate it
+        if (phoneInput.value.trim() !== '') {
+            const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+            
+            if (!phoneRegex.test(phoneInput.value)) {
+                phoneError.textContent = 'Please enter a valid phone number';
+                phoneError.style.display = 'block';
+                phoneInput.focus();
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    function validateSubject() {
+        const subjectInput = document.getElementById('subject');
+        const subjectError = document.getElementById('subjectError');
+        
+        if (subjectInput.value === '') {
+            subjectError.textContent = 'Please select a subject';
+            subjectError.style.display = 'block';
+            subjectInput.focus();
+            return false;
+        }
+        
+        return true;
+    }
+    
+    function validateMessage() {
+        const messageInput = document.getElementById('message');
+        const messageError = document.getElementById('messageError');
+        
+        if (messageInput.value.trim() === '') {
+            messageError.textContent = 'Message is required';
+            messageError.style.display = 'block';
+            messageInput.focus();
+            return false;
+        }
+        
+        if (messageInput.value.trim().length < 10) {
+            messageError.textContent = 'Message must be at least 10 characters';
+            messageError.style.display = 'block';
+            messageInput.focus();
+            return false;
+        }
+        
+        return true;
+    }
+    
+    function clearErrorMessages() {
+        const errorMessages = document.querySelectorAll('.error-message');
+        errorMessages.forEach(error => {
+            error.textContent = '';
+            error.style.display = 'none';
+        });
+        
+        if (successMessage) {
             successMessage.style.display = 'none';
-        }, 5000);
+        }
     }
+
+    // Add real-time validation for better UX
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const phoneInput = document.getElementById('phone');
+    const subjectInput = document.getElementById('subject');
+    const messageInput = document.getElementById('message');
+
+    if (nameInput) nameInput.addEventListener('blur', validateName);
+    if (emailInput) emailInput.addEventListener('blur', validateEmail);
+    if (phoneInput) phoneInput.addEventListener('blur', validatePhone);
+    if (subjectInput) subjectInput.addEventListener('change', validateSubject);
+    if (messageInput) messageInput.addEventListener('blur', validateMessage);
 });
-
-// Helper function to validate email
-function isValidEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-}
-
-// Helper function to validate phone number (basic validation)
-function isValidPhone(phone) {
-    const re = /^[\d\s\-+()]{10,}$/;
-    return re.test(phone);
-}
