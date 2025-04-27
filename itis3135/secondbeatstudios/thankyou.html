@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You for Your Purchase!</title>
+    <script src="scripts/secondbeatdynamic.js" defer></script>
     <style>
         /* CSS Reset */
         * {
@@ -144,6 +145,8 @@
     </style>
 </head>
 <body>
+    <header id="dynamic-header"></header>
+    <main>
     <div class="container">
         <div class="thank-you-card">
             <div class="icon">✓</div>
@@ -174,7 +177,7 @@
             </div>
         </div>
     </div>
-    
+</main>
     <footer>
         <p>© <span id="current-year"></span> SecondBeatStudios. All rights reserved.</p>
     </footer>
@@ -183,7 +186,7 @@
         // Set the current year in footer
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // Simulate loading order details (in a real app, you'd get these from your backend)
+        // These order details are simulated, because the Shop API has not been implemented yet
         document.addEventListener('DOMContentLoaded', function() {
             // Generate a random order number
             const orderNumber = 'ORD-' + Math.floor(Math.random() * 1000000);
@@ -199,7 +202,7 @@
             const total = urlParams.get('total') || localStorage.getItem('orderTotal') || '$49.99';
             document.getElementById('order-total').textContent = total;
             
-            // You could also save this order data to localStorage
+            // Save this order data to localStorage
             const orderData = {
                 number: orderNumber,
                 date: today,
@@ -207,7 +210,7 @@
             };
             localStorage.setItem('lastOrder', JSON.stringify(orderData));
             
-            // Track the conversion (this would be your analytics code)
+            // Track the conversion 
             console.log('Purchase completed:', orderData);
         });
     </script>
