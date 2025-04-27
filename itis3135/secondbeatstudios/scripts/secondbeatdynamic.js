@@ -42,8 +42,8 @@ function initializeHeader() {
 
 // Load components when page loads
 document.addEventListener('DOMContentLoaded', function() {
-    loadComponent('dynamic-header', 'components/secondbeatheader.html');
-    loadComponent('dynamic-footer', 'components/secondbeatfooter.html');
+    loadComponent('dynamic-header', 'secondbeatheader.html');
+    loadComponent('dynamic-footer', 'secondbeatfooter.html');
     
     // Add Font Awesome for icons
     const faScript = document.createElement('script');
