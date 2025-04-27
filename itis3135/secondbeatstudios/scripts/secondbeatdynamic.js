@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loadComponent('dynamic-header', 'secondbeatheader.html');
     loadComponent('dynamic-footer', 'secondbeatfooter.html');
     
-    // Add Font Awesome for icons
+    // Adding icons
     const faScript = document.createElement('script');
     faScript.src = 'https://kit.fontawesome.com/a076d05399.js';
     faScript.crossOrigin = 'anonymous';
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Validation links - only include if these elements exist in your HTML
+// Validation links
 const htmlValidationLink = document.getElementById("validation_link_html");
 const cssValidationLink = document.getElementById("validation_link_css");
 

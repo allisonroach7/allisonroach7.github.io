@@ -3,19 +3,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const slideshowConfig = {
         slides: [
             {
-                imageUrl: 'images/slide1.jpg', // Replace with your image path
+                imageUrl: 'images/product1.png', 
                 caption: 'Featured Product 1',
                 altText: 'Description of product 1'
             },
             {
-                imageUrl: 'images/slide2.jpg', // Replace with your image path
+                imageUrl: 'images/product2.png', 
                 caption: 'Featured Product 2',
                 altText: 'Description of product 2'
             },
             {
-                imageUrl: 'images/slide3.jpg', // Replace with your image path
+                imageUrl: 'images/product3.png', 
                 caption: 'Featured Product 3',
                 altText: 'Description of product 3'
+            },
+            {
+                imageUrl: 'images/product4.png', 
+                caption: 'Featured Product 4',
+                altText: 'Description of product 4'
             }
         ],
         slideInterval: 5000, // 5 seconds
