@@ -123,6 +123,7 @@ main.products-container h1 {
 }
 
 /* Slideshow styles */
+/* Updated Slideshow Styles */
 .slideshow-container {
     position: relative;
     max-width: 800px;
@@ -130,17 +131,14 @@ main.products-container h1 {
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    background-color: var(--text-light); /* Added background for better contrast */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 400px; /* Changed from height to min-height */
+    background-color: var(--text-light);
 }
 
 .slideshow {
     display: flex;
     transition: transform 0.5s ease;
-    width: 100%;
+    height: 400px; /* Fixed height for container */
+    position: relative; /* Needed for absolute positioning of images */
 }
 
 .slide {
@@ -148,15 +146,19 @@ main.products-container h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--text-light); /* Match container background */
+    position: relative;
 }
 
 .slideshow img {
     max-width: 100%;
-    max-height: 400px; /* Control image size */
+    max-height: 100%;
     width: auto;
     height: auto;
     object-fit: contain;
+    position: absolute; /* Allows perfect centering */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .slideshow-btn {
@@ -174,25 +176,32 @@ main.products-container h1 {
     transition: all 0.3s ease;
 }
 
+.slideshow-btn.prev {
+    left: 10px; /* Position from left edge */
+}
+
+.slideshow-btn.next {
+    right: 10px; /* Position from right edge */
+}
+
+.slideshow-btn:hover {
+    background-color: var(--accent-blue);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .slideshow-container {
         max-width: 90%;
-        min-height: 300px;
     }
     
-    .slideshow img {
-        max-height: 300px;
+    .slideshow {
+        height: 300px;
     }
 }
 
 @media (max-width: 480px) {
-    .slideshow-container {
-        min-height: 250px;
-    }
-    
-    .slideshow img {
-        max-height: 250px;
+    .slideshow {
+        height: 250px;
     }
     
     .slideshow-btn {
