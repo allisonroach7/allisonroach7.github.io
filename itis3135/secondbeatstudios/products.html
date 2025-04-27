@@ -91,48 +91,63 @@
     /* Products Grid */
     .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Reduced from 250px */
-    gap: 1rem; /* Reduced from 1.5rem */
-    margin: 1.5rem 0; /* Reduced from 2rem */
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); /* Very narrow columns */
+    gap: 0.8rem; /* Tight spacing */
+    margin: 1rem 0;
 }
 
 .product-card {
     border: 1px solid #ddd;
-    border-radius: 6px; /* Slightly smaller radius */
+    border-radius: 4px;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: all 0.2s ease; /* Faster transition */
+}
+
+.product-card:hover {
+    transform: translateY(-3px); /* Smaller hover lift */
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1); /* More subtle shadow */
 }
 
 .product-card img {
     width: 100%;
-    height: 120px; /* Reduced from 200px */
+    height: 90px; /* Very small image area */
     object-fit: cover;
 }
 
 .product-card h3 {
-    margin: 0.3rem 0.8rem; /* Reduced margins */
-    font-size: 0.9rem; /* Smaller font */
+    margin: 0.2rem 0.5rem;
+    font-size: 0.8rem; /* Tiny heading */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .product-card p {
-    margin: 0.3rem 0.8rem; /* Reduced margins */
-    font-size: 0.8rem; /* Smaller font */
+    margin: 0.2rem 0.5rem;
+    font-size: 0.7rem; /* Very small text */
     color: #666;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .details-btn {
-    width: calc(100% - 1.6rem); /* Adjusted to match new margins */
-    margin: 0.8rem; /* Reduced from 1rem */
-    padding: 0.4rem; /* Reduced from 0.5rem */
-    font-size: 0.8rem; /* Smaller button text */
+    width: calc(100% - 1rem);
+    margin: 0.5rem;
+    padding: 0.3rem;
+    font-size: 0.7rem; /* Tiny button text */
 }
 
-/* Adjust filter buttons to match new scale */
-.filter-btn {
-    padding: 0.4rem 0.8rem; /* Reduced from 0.5rem 1rem */
-    margin: 0 0.3rem; /* Reduced from 0 0.5rem */
-    font-size: 0.9rem;
+.filter-controls {
+    margin: 0.5rem 0; /* Compact filter area */
 }
+
+.filter-btn {
+    padding: 0.3rem 0.6rem;
+    margin: 0 0.2rem;
+    font-size: 0.8rem;
+}
+
 
 /* Updated Slideshow Styles */
 .slideshow-container {
