@@ -1,259 +1,147 @@
-let pg, pg2, pg3, pg4;
-let color0;
-let theShader1;
-let theShader2;
-let tex;
+// Declare variables for the particle system and texture
+let particleTexture;
+let particleSystem;
+
+function preload() {
+  // Using a placeholder white circle texture since the original path may not exist
+  // You can replace this with your actual particle texture later
+  particleTexture = createGraphics(20, 20);
+  particleTexture.ellipse(10, 10, 18, 18);
+  particleTexture.fill(255);
+}
 
 function setup() {
-  let canvas = createCanvas(800, 800, WEBGL);
+  // Set the canvas size and attach it to the canvas-container div
+  let canvas = createCanvas(720, 400);
   canvas.parent('canvas-container');
-  background(20);
-  
-  noStroke();
-    
-  pg = createGraphics(width, height);
-  image_init(pg);
-  
-  pg2 = createGraphics(width, height);
-  image_init(pg2);
-  
-  pg3 = createGraphics(width, height);
-  image_init(pg3);
-  
-  pg4 = createGraphics(width, height);
-  image_init(pg4);
-  
-  color0 = rand_color('#F3EEEA');
-  theShader1 = createShader(shader1.vs, shader1.fs);
-  theShader2 = createShader(shader1.vs, frag_glith);
-  
-  const n = 100;
-  translate(-width/2, -height/2);
-  
-  widthGrid_pg1(pg, 10);
-  
-  widthGrid(pg2, n, 0.5);
-  widthGrid(pg3, 10, 0.7);
-  widthStripe(pg4, n, 0.5);
-  
-  shader(theShader1);
-  theShader1.setUniform(`u_tex`, pg);
-  theShader1.setUniform(`u_tex2`, pg2);
-  theShader1.setUniform(`u_tex3`, pg3);
-  theShader1.setUniform(`u_tex4`, pg4);
-  theShader1.setUniform('u_color', color0);
-  theShader1.setUniform(`u_time`, frameCount / 200);
-  rect(0, 0, width, height);
-    
-  resetShader();
-  tex = get(0, 0, width, height);
-  describe('Glitch animation of a randomly generated grid pattern.');
+  colorMode(HSB);
+
+  // Initialize the particle system
+  particleSystem = new ParticleSystem(
+    0,
+    createVector(width / 2, height - 60),
+    particleTexture
+  );
+
+  describe(
+    'White circle gives off smoke in the middle of the canvas, with wind force determined by the cursor position.'
+  );
 }
 
 function draw() {
-  translate(-width/2, -height/2);
-  
-  // Delay processing to prevent loading faster than drawing
-  if(frameCount > 200) {
-    clear();
-    shader(theShader2);
-    theShader2.setUniform(`u_tex`, tex);
-    theShader2.setUniform(`u_time`, frameCount / 200);
-    rect(0, 0, width, height);
+  background(20);
+
+  // Calculate the wind force based on the mouse x position
+  let dx = map(mouseX, 0, width, -0.2, 0.2);
+  let wind = createVector(dx, 0);
+
+  // Apply the wind and run the particle system
+  particleSystem.applyForce(wind);
+  particleSystem.run();
+  for (let i = 0; i < 2; i += 1) {
+    particleSystem.addParticle();
   }
+
+  // Draw an arrow representing the wind force
+  drawVector(wind, createVector(width / 2, 50, 0), 500);
 }
 
-/** pg initialization function
- * @function image_init
- * @param {p5.Graphics} pg - p5.Graphics
- */
-const image_init = (pg) => {
-  pg.rectMode(CENTER);
-  pg.fill("#000000");
-  pg.noStroke();
-};
+// Display an arrow to show a vector magnitude and direction
+function drawVector(v, loc, scale) {
+  push();
+  let arrowSize = 4;
+  translate(loc.x, loc.y);
+  stroke(255);
+  strokeWeight(3);
+  rotate(v.heading());
 
-/** Generate a grid pattern divided by num across the screen
-* @method widthGrid
-* @param  {p5.Graphics} pg - Layer
-* @param  {Number} num - Number of divisions
-*/
-const widthGrid = (pg, num, size) => {
-  // Fix for drawing issues on OpenProcessing
-  pg.push();
-  pg.fill(255);
-  pg.rect(0, 0, pg.width*2, pg.height*2);
-  pg.fill(0);
-  pg.pop();
-  
-  const w = width/num;
-  const w2 = w*size;
-  for(let i = 0; i < num; i++) {
-    for(let j = 0; j < num; j++) {
-      pg.push();
-      pg.translate(i*w + w/2, j*w + w/2);
-      pg.rect(0, 0, w2, w2);
-      pg.pop();
+  let length = v.mag() * scale;
+  line(0, 0, length, 0);
+  line(length, 0, length - arrowSize, +arrowSize / 2);
+  line(length, 0, length - arrowSize, -arrowSize / 2);
+  pop();
+}
+
+class ParticleSystem {
+  constructor(particleCount, origin, textureImage) {
+    this.particles = [];
+
+    // Make a copy of the input vector
+    this.origin = origin.copy();
+    this.img = textureImage;
+    for (let i = 0; i < particleCount; ++i) {
+      this.particles.push(new Particle(this.origin, this.img));
     }
   }
-}
 
-/** Generate a grid pattern divided by num across the screen
-* @method widthGrid
-* @param  {p5.Graphics} pg - Layer
-* @param  {Number} num - Number of divisions
-*/
-const widthStripe = (pg, num, size) => {
-  pg.push();
-  pg.fill(255);
-  pg.rect(0, 0, pg.width*2, pg.height*2);
-  pg.fill(0);
-  pg.pop();
-  
-  const w = width/num;
-  const w2 = w*size;
-  for(let j = 0; j < num; j++) {
-    pg.push();
-    pg.translate(0, j*w + w/2);
-    pg.rect(0, 0, pg.width*2, w2);
-    pg.pop();
-  }
-}
+  run() {
+    // Loop through and run each particle
+    for (let i = this.particles.length - 1; i >= 0; i -= 1) {
+      let particle = this.particles[i];
+      particle.run();
 
-/** Generate a grid pattern divided by num across the screen
-* @method widthGrid
-* @param  {p5.Graphics} pg - Layer
-* @param  {Number} num - Number of divisions
-*/
-const widthGrid_pg1 = (pg, num) => {
-  const w = width/num;
-  
-  for(let i = 0; i < num; i++) {
-    for(let j = 0; j < num; j++) {
-      if ((i % 2 === 0 && j % 2 === 0) || (i % 2 === 1 && j % 2 === 1)) {
-        if(random(1) < 0.5) {
-          pg.fill('#ffffff')
-        } else {
-          pg.fill(220);
-        }
-      } else {
-        if(random(1) < 0.5) {
-          pg.fill("#000000");
-        } else {
-          pg.fill("#F3EEEA");
-        }
+      // Remove dead particles
+      if (particle.isDead()) {
+        this.particles.splice(i, 1);
       }
-      pg.rect(i*w + w/2, j*w + w/2, w, w);
     }
   }
-}
 
-const rects = (pg, w) => {
-  pg.rect(0, 0, w, w);
-}
-
-// =======================================
-// shader related
-// =======================================
-  
-const rand_color = (colorCode) => {
-  let rc = color(colorCode);
-  return [red(rc) / 255.0, green(rc) / 255.0, blue(rc) / 255.0];
-};
-
-const shader1 = {
-  vs: `
-  precision highp float;
-  precision highp int;
-
-  attribute vec3 aPosition;
-  attribute vec2 aTexCoord;
-
-  varying vec2 vTexCoord;
-
-  uniform mat4 uProjectionMatrix;
-  uniform mat4 uModelViewMatrix;
-
-  void main() {
-    vec4 positionVec4 = vec4(aPosition, 1.0);
-    gl_Position = uProjectionMatrix * uModelViewMatrix * positionVec4;
-    vTexCoord = aTexCoord;
-  }
-`,
-  fs: `
-  precision highp float;
-  precision highp int;
-
-  varying vec2 vTexCoord;
-
-  uniform sampler2D u_tex;
-  uniform sampler2D u_tex2;
-  uniform sampler2D u_tex3;
-  uniform sampler2D u_tex4;
-  uniform float u_time;
-  uniform vec3 u_color;
-
-  float PI = 3.14159265358979;
-
-  // May not work on iOS
-  // :https://byteblacksmith.com/improvements-to-the-canonical-one-liner-glsl-rand-for-opengl-es-2-0/
-  float random(vec2 c) {
-    return fract(sin(dot(c.xy ,vec2(12.9898,78.233))) * 43758.5453);
-  }
-
-  void main() {
-    vec2 uv = vTexCoord;
-    vec4 tex = texture2D(u_tex2, uv);
-    vec4 tex3 = texture2D(u_tex3, uv);
-    vec4 tex4 = texture2D(u_tex4, uv);
-    vec4 tex_lattice = texture2D(u_tex, uv); // Target for transformation
-
-    if(tex_lattice == vec4(u_color, 1.0)) {
-      gl_FragColor = tex;
-    } else if(tex_lattice == vec4(1.0, 1.0, 1.0, 1.0)) {
-      gl_FragColor = tex4;
-    } else if(tex_lattice == vec4(1.0, 1.0, 1.0, 0.0)) {
-      gl_FragColor = tex3;
-    } else {
-      gl_FragColor = tex_lattice;; 
+  // Apply force to each particle
+  applyForce(dir) {
+    for (let particle of this.particles) {
+      particle.applyForce(dir);
     }
-
-    // For white noise
-    float interval = 3.0;
-    float strength = smoothstep(interval * 0.5, interval, interval - mod(0.0, interval));
-    float whiteNoise = (random(uv + mod(0.0, 10.0)) * 2.0 - 1.0) * (0.15 + strength * 0.15);
-    gl_FragColor = gl_FragColor + whiteNoise;
-  }
-`,
-};
-
-const frag_glith = `
-  precision highp float;
-  precision highp int;
-
-  varying vec2 vTexCoord;
-  
-  uniform sampler2D u_tex;
-  uniform float u_time;
-
-  float PI = 3.14159265358979;
-
-#define RATE 0.0001
-
-  float rand(vec2 co) {
-    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453) * 2.0 - 1.0;
   }
 
-  float offset(float blocks, vec2 uv) {
-    float shaderTime = u_time*RATE;
-    return rand(vec2(shaderTime, floor(uv.y * blocks)));
+  addParticle() {
+    this.particles.push(new Particle(this.origin, this.img));
+  }
+} // class ParticleSystem
+
+class Particle {
+  constructor(pos, imageTexture) {
+    this.loc = pos.copy();
+
+    let xSpeed = randomGaussian() * 0.3;
+    let ySpeed = randomGaussian() * 0.3 - 1.0;
+
+    this.velocity = createVector(xSpeed, ySpeed);
+    this.acceleration = createVector();
+    this.lifespan = 100.0;
+    this.texture = imageTexture;
+    this.color = color(frameCount % 256, 255, 255);
   }
 
-  void main() {
-    vec2 uv = vTexCoord; 
-
-    gl_FragColor.r = texture2D(u_tex, uv + vec2(offset(64.0, uv) * 0.03, 0.0)).r;
-    gl_FragColor.g = texture2D(u_tex, uv + vec2(offset(64.0, uv) * 0.03 * 0.16666666, 0.0)).g;
-    gl_FragColor.b = texture2D(u_tex, uv + vec2(offset(42.0, uv) * 0.03, 0.0)).b;
+  // Update and draw the particle
+  run() {
+    this.update();
+    this.render();
   }
-`;
+
+  // Draw the particle
+  render() {
+    imageMode(CENTER);
+    tint(this.color, this.lifespan);
+    image(this.texture, this.loc.x, this.loc.y);
+  }
+
+  applyForce(f) {
+    // Add the force vector to the current acceleration vector
+    this.acceleration.add(f);
+  }
+
+  isDead() {
+    return this.lifespan <= 0.0;
+  }
+
+  // Update the particle's position, velocity, lifespan
+  update() {
+    this.velocity.add(this.acceleration);
+    this.loc.add(this.velocity);
+    this.lifespan -= 2.5;
+
+    // Set the acceleration to zero
+    this.acceleration.mult(0);
+  }
+} // class Particle
