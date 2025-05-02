@@ -6,8 +6,299 @@
     <title>SecondBeatStudios - Reviews</title>
     <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
     <script src="scripts/secondbeatdynamic.js" defer></script>
-    <script src="scripts/reviews.js"></script>
-    <style src ="styles/review.css">
+    <script src = "scripts/reviews.js"></script>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-bg: #EDF5EB;
+            --accent-blue: #4BB3F0;
+            --accent-orange: #F4892A;
+            --text-dark: #000000;
+            --text-light: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: var(--text-light);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            max-height: 80px;
+            margin-right: 1rem;
+        }
+        
+        .logo-text {
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+        
+        .logo-text span {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: normal;
+            text-transform: none;
+        }
+        
+        /* Navigation Styles */
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+        
+        nav ul li a:hover {
+            background-color: var(--accent-blue);
+            color: var(--text-light);
+        }
+        
+        nav ul li a.active {
+            background-color: var(--accent-orange);
+            color: var(--text-light);
+        }
+        
+        /* Dropdown menu styles */
+        nav ul ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--text-light);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 0 0 4px 4px;
+            z-index: 1000;
+        }
+        
+        nav ul li:hover > ul {
+            display: block;
+        }
+        
+        nav ul ul li {
+            margin: 0;
+            width: 200px;
+        }
+        
+        nav ul ul li a {
+            padding: 10px 15px;
+            display: block;
+        }
+        
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        /* Reviews Page Styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .shop-name {
+            font-size: 28px;
+            font-weight: 700;
+            margin-right: 20px;
+        }
+        
+        .rating-summary {
+            display: flex;
+            align-items: center;
+        }
+        
+        .stars {
+            color: #f8b500;
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        
+        .rating-count {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .reviews-header {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e1e1e1;
+        }
+        
+        .review {
+            display: flex;
+            padding: 20px 0;
+            border-bottom: 1px solid #e1e1e1;
+        }
+        
+        .review:last-child {
+            border-bottom: none;
+        }
+        
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #e1e1e1;
+            margin-right: 20px;
+            overflow: hidden;
+        }
+        
+        .reviewer-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .review-content {
+            flex: 1;
+        }
+        
+        .reviewer-name {
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .review-stars {
+            color: #f8b500;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .review-date {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .review-text {
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        
+        .review-item {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .review-images {
+            display: flex;
+            margin-top: 15px;
+            gap: 10px;
+        }
+        
+        .review-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 4px;
+            cursor: pointer;
+            object-fit: cover;
+        }      
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--text-light);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+            }
+            
+            nav ul.active {
+                left: 0;
+            }
+            
+            nav ul li {
+                margin: 1rem 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 1rem;
+            }
+            
+            /* Hide dropdowns on mobile */
+            nav ul ul {
+                position: static;
+                display: none;
+                width: 100%;
+                box-shadow: none;
+            }
+            
+            nav ul li:hover > ul {
+                display: none;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .rating-summary {
+                margin-top: 10px;
+            }
+        }
     </style>
 </head>
 <body>

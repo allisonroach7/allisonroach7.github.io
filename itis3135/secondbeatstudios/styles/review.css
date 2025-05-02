@@ -1,5 +1,7 @@
-  /* Base Styles */
-  :root {
+/* styles/review.css */
+
+/* Base Styles */
+:root {
     --primary-bg: #EDF5EB;
     --accent-blue: #4BB3F0;
     --accent-orange: #F4892A;
@@ -233,7 +235,8 @@ nav ul ul li a {
     border-radius: 4px;
     cursor: pointer;
     object-fit: cover;
-}      
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .menu-toggle {
