@@ -1,0 +1,178 @@
+:root {
+    --primary-bg: #EDF5EB;
+    --accent-blue: #4BB3F0;
+    --accent-orange: #F4892A;
+    --text-dark: #000000;
+    --text-light: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: var(--primary-bg);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--text-light);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    max-height: 80px;
+    margin-right: 1rem;
+}
+
+.logo-text {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+.logo-text span {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: normal;
+    text-transform: none;
+}
+
+/* Navigation Styles */
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 1.5rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: var(--accent-blue);
+    color: var(--text-light);
+}
+/* Main content styles */
+main.products-container {
+padding: 2rem;
+max-width: 1200px;
+margin: 0 auto;
+text-align: center;
+}
+
+main.products-container h1 {
+margin-bottom: 2rem;
+color: var(--accent-orange);
+}
+
+/* Slideshow styles */
+.slideshow-container {
+position: relative;
+max-width: 800px;
+margin: 2rem auto;
+overflow: hidden;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+border-radius: 8px;
+background-color: var(--text-light);
+}
+
+.slideshow {
+display: flex;
+transition: transform 0.5s ease;
+height: 400px; /* Fixed height for container */
+position: relative; /* Needed for absolute positioning of images */
+}
+
+.slide {
+min-width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+position: relative;
+}
+
+.slideshow img {
+max-width: 100%;
+max-height: 100%;
+width: auto;
+height: auto;
+object-fit: contain;
+position: absolute; /* Allows perfect centering */
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+.slideshow-btn {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+background-color: rgba(75, 179, 240, 0.7);
+color: white;
+border: none;
+padding: 1rem;
+cursor: pointer;
+border-radius: 50%;
+font-size: 1.2rem;
+z-index: 10;
+transition: all 0.3s ease;
+}
+
+.slideshow-btn.prev {
+left: 10px; /* Position from left edge */
+}
+
+.slideshow-btn.next {
+right: 10px; /* Position from right edge */
+}
+
+.slideshow-btn:hover {
+background-color: var(--accent-blue);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+.slideshow-container {
+    max-width: 90%;
+}
+
+.slideshow {
+    height: 300px;
+}
+}
+
+@media (max-width: 480px) {
+.slideshow {
+    height: 250px;
+}
+
+.slideshow-btn {
+    padding: 0.75rem;
+}
+}
